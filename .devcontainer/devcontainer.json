@@ -1,0 +1,15 @@
+{
+    "name": "My Blazor Full-Stack Dev Environment",
+    "dockerFile": "dockerfile",
+    //"dockerComposeFile": "../docker-compose.yml",
+    "runArgs": [ "--network=MyFullStackNetwork --rm"],
+    "extensions": [ "ms-dotnettools.csharp", "ms-vscode.js-debug-nightly" ],
+    "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash",
+        "debug.javascript.usePreview": true
+    },
+    // "service": "api",
+    // "workspaceFolder": "/root",
+    // "shutdownAction": "stopCompose"
+    "forwardPorts": [5000, 5001],
+}
