@@ -2,6 +2,7 @@
     "name": "My ASP.NET Full-Stack Dev Environment",
     //"dockerFile": "dockerfile",
     "dockerComposeFile": ["docker-compose.yml"],
+    // "composeArgs" : ["--env-file=dev.env"],
     //"image": "mcr.microsoft.com/dotnet/core/sdk:3.1.202-focal",
     //"runArgs": [ "--network MyFullStackNetwork"],
     "extensions": [ "ms-dotnettools.csharp", "ms-vscode.js-debug-nightly" ],
@@ -11,7 +12,7 @@
     },
     "service": "dev-env",
     "workspaceFolder": "/workspace",
-    // "shutdownAction": "stopCompose"
+    "shutdownAction": "stopCompose",
     "forwardPorts": [5000, 5001],
     // "postCreateCommand": [
 	// 	"ls"

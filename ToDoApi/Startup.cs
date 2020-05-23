@@ -6,11 +6,13 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using ToDoApi.Data;
+using ToDoApi.Models;
 
 namespace ToDoApi
 {
@@ -26,6 +28,8 @@ namespace ToDoApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ToDoApiContext>(opt => opt.UseSqlServer
+                (Configuration.GetConnectionString("AspNetCoreFullStackMsSqlDbConnection")));
             services.AddControllers();
 
             services.AddScoped<IToDoApiRepo, MockToDoApiRepo>();
@@ -37,6 +41,7 @@ namespace ToDoApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                //PrepDbToDoTable.PrepPopulation(app);
             }
 
             app.UseHttpsRedirection();
