@@ -5,9 +5,9 @@ services:
         build:
             context: .
             dockerfile: dockerfile
-        ports:
-            - "5000:5000"
-            - "5001:5001"
+        # ports:
+        #     - "5000:5000"
+        #     - "5001:5001"
         networks:
             - MyFullStackNetwork
         volumes:

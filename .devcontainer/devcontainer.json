@@ -13,7 +13,7 @@
     "workspaceFolder": "/workspace",
     // "shutdownAction": "stopCompose"
     "forwardPorts": [5000, 5001],
-    "postCreateCommand": [
-		"ls"
-	],
+    // "postCreateCommand": [
+	// 	"ls"
+	// ],
 }
