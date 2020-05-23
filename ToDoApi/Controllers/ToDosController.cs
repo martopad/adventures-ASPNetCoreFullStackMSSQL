@@ -13,7 +13,14 @@ namespace ToDoApi.Controllers
     [ApiController]
     public class ToDosController : ControllerBase
     {
-        private readonly MockToDoApiRepo _repository = new MockToDoApiRepo();
+        private readonly IToDoApiRepo _repository;
+        //private readonly MockToDoApiRepo _repository = new MockToDoApiRepo();
+
+        public ToDosController(IToDoApiRepo repository)
+        {
+            _repository = repository;
+        }
+
         //GET api/todos
         [HttpGet]
         public ActionResult <IEnumerable<ToDo>> GetAllToDos()
