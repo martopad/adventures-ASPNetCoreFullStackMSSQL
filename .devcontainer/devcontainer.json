@@ -9,7 +9,7 @@
         "terminal.integrated.shell.linux": "/bin/bash",
         "debug.javascript.usePreview": true
     },
-    "service": "dev",
+    "service": "dev-env",
     "workspaceFolder": "/workspace",
     // "shutdownAction": "stopCompose"
     "forwardPorts": [5000, 5001],

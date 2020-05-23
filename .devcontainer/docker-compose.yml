@@ -1,7 +1,7 @@
 version: '3.7'
 
 services:
-    dev:
+    dev-env:
         build:
             context: .
             dockerfile: dockerfile
@@ -14,13 +14,15 @@ services:
             - ..:/workspace
         command: sleep infinity
 
-    # database:
-    #     image: mcr.microsoft.com/mssql/server:2019-CU4-ubuntu-16.04
-    #     environment:
-    #         ACCEPT_EULA: Y
-    #         SA_PASSWORD: "Pa55w0rd!"
-    #         MSSQL_PID: Express
-    #     ports:
-    #         - "1433:1433"
+    dev-db:
+        image: mcr.microsoft.com/mssql/server:2019-CU4-ubuntu-16.04
+        environment:
+            ACCEPT_EULA: Y
+            SA_PASSWORD: "Pa55w0rd!"
+            MSSQL_PID: Express
+        ports:
+            - "1433:1433"
+        networks:
+            - MyFullStackNetwork
 networks:
     MyFullStackNetwork:
