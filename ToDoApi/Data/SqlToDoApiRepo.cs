@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using ToDoApi.Models;
@@ -13,6 +14,16 @@ namespace ToDoApi.Data
             _context = context;
         }
 
+        public void CreateToDo(ToDo td)
+        {
+            if(td == null)
+            {
+                throw new ArgumentNullException(nameof(td));
+            }
+
+            _context.ToDos.Add(td);
+        }
+
         public IEnumerable<ToDo> GetAllToDos()
         {
             return _context.ToDos.ToList();
@@ -21,6 +32,11 @@ namespace ToDoApi.Data
         public ToDo GetTodoById(int id)
         {
             return _context.ToDos.FirstOrDefault( p => p.Id == id);
+        }
+
+        public bool SaveChanges()
+        {
+            return (_context.SaveChanges() >= 0);
         }
     }
 }

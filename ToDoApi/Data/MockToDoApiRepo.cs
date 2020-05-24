@@ -5,6 +5,11 @@ namespace ToDoApi.Data
 {
     public class MockToDoApiRepo : IToDoApiRepo
     {
+        public void CreateToDo(ToDo td)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public IEnumerable<ToDo> GetAllToDos()
         {
             var toDos = new List<ToDo>
@@ -21,6 +26,11 @@ namespace ToDoApi.Data
         public ToDo GetTodoById(int id)
         {
             return new ToDo{Id=999, Name="QQQQQQQQQQQQQQQQ", IsDone=false};
+        }
+
+        public bool SaveChanges()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

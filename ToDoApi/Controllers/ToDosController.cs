@@ -37,7 +37,7 @@ namespace ToDoApi.Controllers
 
         //GET api/todos/{id}
         //for more infor look for "Binding Sources", how id gets mapped from a HTTP request
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name="GetToDoById")]
         public ActionResult <ToDoReadDto> GetToDoById(int id)
         {
             var toDoItem = _repository.GetTodoById(id);
@@ -46,6 +46,22 @@ namespace ToDoApi.Controllers
                 return Ok(_mapper.Map<ToDoReadDto>(toDoItem));
             }
             return NotFound();
+        }
+
+        //POST api/todos
+        [HttpPost]
+        public ActionResult <ToDoReadDto> CreateToDo(ToDoCreateDto toDoCreateDto)
+        {
+            //do validation first for toDoCreateDto here ....
+
+            var toDoModel = _mapper.Map<ToDo>(toDoCreateDto);
+            _repository.CreateToDo(toDoModel);
+            _repository.SaveChanges();
+
+            var toDoReadDto = _mapper.Map<ToDoReadDto>(toDoModel);
+
+            return CreatedAtRoute(nameof(GetToDoById), new {Id = toDoReadDto.Id}, toDoReadDto);
+            // return Ok(toDoReadDto);
         }
     }
 }

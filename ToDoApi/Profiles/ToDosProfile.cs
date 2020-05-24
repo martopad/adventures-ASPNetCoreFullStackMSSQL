@@ -8,7 +8,9 @@ namespace ToDoApi.Profiles
     {
         public ToDosProfile()
         {
+            //CreateMap<Source, Destination>()
             CreateMap<ToDo, ToDoReadDto>();
+            CreateMap<ToDoCreateDto, ToDo>();
         }
     }
 }
