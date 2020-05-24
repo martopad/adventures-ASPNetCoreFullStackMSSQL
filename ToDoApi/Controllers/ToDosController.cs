@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using ToDoApi.Data;
 using ToDoApi.Dtos;
@@ -74,6 +75,30 @@ namespace ToDoApi.Controllers
                 return NotFound();
             }
             _mapper.Map(toDoUpdateDto, toDoModelFromRepo);
+            _repository.UpdateToDo(toDoModelFromRepo);
+            _repository.SaveChanges();
+
+            return NoContent();
+        }
+
+        //PATCH api/todos/${id}
+        [HttpPatch("{id}")]
+        public ActionResult PartialToDoUpdate(int id, JsonPatchDocument<ToDoUpdateDto> patchDoc)
+        {
+            var toDoModelFromRepo = _repository.GetTodoById(id);
+            if(toDoModelFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            var toDoToPatch = _mapper.Map<ToDoUpdateDto>(toDoModelFromRepo);
+            patchDoc.ApplyTo(toDoToPatch, ModelState);
+            if(!TryValidateModel(toDoToPatch))
+            {
+                return ValidationProblem(ModelState);
+            }
+
+            _mapper.Map(toDoToPatch, toDoModelFromRepo);
             _repository.UpdateToDo(toDoModelFromRepo);
             _repository.SaveChanges();
 
