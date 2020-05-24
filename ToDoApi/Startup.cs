@@ -32,7 +32,8 @@ namespace ToDoApi
                 (Configuration.GetConnectionString("AspNetCoreFullStackMsSqlDbConnection")));
             services.AddControllers();
 
-            services.AddScoped<IToDoApiRepo, MockToDoApiRepo>();
+            // services.AddScoped<IToDoApiRepo, MockToDoApiRepo>();
+            services.AddScoped<IToDoApiRepo, SqlToDoApiRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,7 +42,7 @@ namespace ToDoApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                //PrepDbToDoTable.PrepPopulation(app);
+                PrepDbToDoTable.PrepPopulation(app);
             }
 
             app.UseHttpsRedirection();
