@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,6 +32,8 @@ namespace ToDoApi
             services.AddDbContext<ToDoApiContext>(opt => opt.UseSqlServer
                 (Configuration.GetConnectionString("AspNetCoreFullStackMsSqlDbConnection")));
             services.AddControllers();
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             // services.AddScoped<IToDoApiRepo, MockToDoApiRepo>();
             services.AddScoped<IToDoApiRepo, SqlToDoApiRepo>();
