@@ -38,5 +38,10 @@ namespace ToDoApi.Data
         {
             return (_context.SaveChanges() >= 0);
         }
+
+        public void UpdateToDo(ToDo td)
+        {
+            //Nothing
+        }
     }
 }

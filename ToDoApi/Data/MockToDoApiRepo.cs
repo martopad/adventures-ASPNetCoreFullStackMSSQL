@@ -32,5 +32,10 @@ namespace ToDoApi.Data
         {
             throw new System.NotImplementedException();
         }
+
+        public void UpdateToDo(ToDo td)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

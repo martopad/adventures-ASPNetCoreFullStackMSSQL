@@ -11,6 +11,7 @@ namespace ToDoApi.Profiles
             //CreateMap<Source, Destination>()
             CreateMap<ToDo, ToDoReadDto>();
             CreateMap<ToDoCreateDto, ToDo>();
+            CreateMap<ToDoUpdateDto, ToDo>();
         }
     }
 }

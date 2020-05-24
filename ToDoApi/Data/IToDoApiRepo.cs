@@ -9,5 +9,6 @@ namespace ToDoApi.Data
         IEnumerable<ToDo> GetAllToDos();
         ToDo GetTodoById(int id);
         void CreateToDo(ToDo td);
+        void UpdateToDo(ToDo td);
     }
 }

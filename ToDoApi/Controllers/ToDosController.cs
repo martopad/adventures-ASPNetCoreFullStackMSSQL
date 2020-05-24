@@ -63,5 +63,21 @@ namespace ToDoApi.Controllers
             return CreatedAtRoute(nameof(GetToDoById), new {Id = toDoReadDto.Id}, toDoReadDto);
             // return Ok(toDoReadDto);
         }
+
+        //PUT api/todos/${id}
+        [HttpPut("{id}")]
+        public ActionResult UpdateToDo(int id, ToDoUpdateDto toDoUpdateDto)
+        {
+            var toDoModelFromRepo = _repository.GetTodoById(id);
+            if(toDoModelFromRepo == null)
+            {
+                return NotFound();
+            }
+            _mapper.Map(toDoUpdateDto, toDoModelFromRepo);
+            _repository.UpdateToDo(toDoModelFromRepo);
+            _repository.SaveChanges();
+
+            return NoContent();
+        }
     }
 }
