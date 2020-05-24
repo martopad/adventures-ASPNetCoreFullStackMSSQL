@@ -24,6 +24,16 @@ namespace ToDoApi.Data
             _context.ToDos.Add(td);
         }
 
+        public void DeleteTodo(ToDo td)
+        {
+            if(td == null)
+            {
+                throw new ArgumentNullException(nameof(td));
+            }
+
+            _context.ToDos.Remove(td);
+        }
+
         public IEnumerable<ToDo> GetAllToDos()
         {
             return _context.ToDos.ToList();

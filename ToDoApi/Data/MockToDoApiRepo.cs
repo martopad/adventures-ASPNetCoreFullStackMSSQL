@@ -10,6 +10,11 @@ namespace ToDoApi.Data
             throw new System.NotImplementedException();
         }
 
+        public void DeleteTodo(ToDo td)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public IEnumerable<ToDo> GetAllToDos()
         {
             var toDos = new List<ToDo>

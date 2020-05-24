@@ -104,5 +104,20 @@ namespace ToDoApi.Controllers
 
             return NoContent();
         }
+
+        //DELET api/todos/{id}
+        [HttpDelete("{id}")]
+        public ActionResult DeleteToDo(int id)
+        {
+            var toDoModelFromRepo = _repository.GetTodoById(id);
+            if(toDoModelFromRepo == null)
+            {
+                return NotFound();
+            }
+            _repository.DeleteTodo(toDoModelFromRepo);
+            _repository.SaveChanges();
+
+            return NoContent();
+        }
     }
 }

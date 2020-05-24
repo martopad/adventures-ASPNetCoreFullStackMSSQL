@@ -10,5 +10,6 @@ namespace ToDoApi.Data
         ToDo GetTodoById(int id);
         void CreateToDo(ToDo td);
         void UpdateToDo(ToDo td);
+        void DeleteTodo(ToDo td);
     }
 }
